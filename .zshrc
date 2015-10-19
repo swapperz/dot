@@ -6,14 +6,6 @@ export ZSH=/root/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-#ZSH_THEME="dpoggi"
-#ZSH_THEME="bira"
-#ZSH_THEME="juanghurtado"
-#ZSH_THEME="ys"
-#ZSH_THEME="blinks"
-#ZSH_THEME="juanghurtado"
-#ZSH_THEME="mortalscumbag"
-#ZSH_THEME="rgm"
 ZSH_THEME="tjkirch"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -129,4 +121,4 @@ zstyle -e ':completion:*:approximate:*' max-errors \
 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
 # BACKSPACE for Linux 
-stty erase '^H'
+#stty erase '^H'

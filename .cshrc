@@ -183,7 +183,7 @@ alias apg "apg -m24 -M NCL -a 1"
 
 #setenv LANG en_US.UTF-8
 
-if ($OSTYPE == "linux") then
+if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 # BACKSPACE for Linux
 #	stty erase '^H' >& /dev/null 
         set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
@@ -191,7 +191,7 @@ if ($OSTYPE == "linux") then
                 alias dmesg "dmesg -T -L"
 	else
 		dmesg -V >& /dev/null
-		if ($? -eq 0) then
+		if ($? == 0) then
 	                alias dmesg "dmesg -T"
 		endif
         endif

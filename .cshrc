@@ -189,6 +189,11 @@ if ($OSTYPE == "linux") then
         set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
         if ($CENTOSVER == ".el7") then
                 alias dmesg "dmesg -T -L"
+	else
+		dmesg -V >& /dev/null
+		if ($? -eq 0) then
+	                alias dmesg "dmesg -T"
+		endif
         endif
 endif
 

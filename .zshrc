@@ -110,6 +110,22 @@ alias tcshrc='vim ~/.tcshrc'
 alias null='cat /dev/null'
 alias apg="apg -m24 -M NCL -a 1"
 
+
+if [ "$OSTYPE" = "linux" -o "$OSTYPE" = "linux-gnu" ]
+then
+	CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
+	if [ "$CENTOSVER" = ".el7" ]
+	then
+		alias dmesg="dmesg -T -L"
+	else
+		dmesg -V >& /dev/null
+		if [ $? -eq 0 ]
+		then
+			alias dmesg="dmesg -T"
+		fi
+	fi
+fi
+
 bindkey "\033[1~" beginning-of-line	# Home
 bindkey "\033[4~" end-of-line		# End
 

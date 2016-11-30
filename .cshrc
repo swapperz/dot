@@ -24,9 +24,9 @@ if ($?prompt) then
 #	set prompt	= "\n%{\e[31;1m%}root%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "
 	set prompt	= "\n%{\e[31;1m%}`whoami`%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "
 	set filec
-	set history 	= 1000
-	set savehist 	= 1000
-	set mail 	= (/var/mail/$USER)
+	set history		= 1000
+	set savehist	= 1000
+	set mail	= (/var/mail/$USER)
 	if ( $?tcsh ) then
 		bindkey "^W"	backward-delete-word
 		bindkey -k up	history-search-backward
@@ -61,34 +61,35 @@ if ( -r ~/.ssh/known_hosts ) then
 	set hosts = ($hosts `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | tr ',' "\n"`) 
 endif
 
-complete ssh		'p/1/$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/'
+complete ssh		'p/1/$hosts/ c/-/"(l n)"/	n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/'
 complete scp		"c,*:/,F:/," "c,*:,F:$HOME," 'c/*@/$hosts/:/'
 complete rsync		"c,*:/,F:/," "c,*:,F:$HOME," 'c/*@/$hosts/:/'
 complete ping		'p/1/$hosts/'
 complete traceroute	'p/1/$hosts/'
+complete mtr 		'p/1/$hosts/'
 complete telnet		'p/1/$hosts/' "p/2/x:'<port>'/" "n/*/n/"
-complete kill 		'c/-/S/' 'p/1/(-)//'
+complete kill		'c/-/S/' 'p/1/(-)//'
 complete killall	'p/1/c/'
 complete pkill		'p/1/c/'
-complete man 		'p/1/c/'
-complete cd 		'C/*/d/'
-complete which 		'p/1/c/'
-complete where 		'p/1/c/'
-complete unsetenv 	'p/1/e/'
-complete setenv 	'p/1/e/'
-complete env 		'c/*=/f/' 'p/1/e/=/' 'p/2/c/'
-complete chgrp 		'p/1/g/'
-complete chown 		'p/1/u/'
+complete man		'p/1/c/'
+complete cd			'C/*/d/'
+complete which		'p/1/c/'
+complete where		'p/1/c/'
+complete unsetenv	'p/1/e/'
+complete setenv		'p/1/e/'
+complete env		'c/*=/f/' 'p/1/e/=/' 'p/2/c/'
+complete chgrp		'p/1/g/'
+complete chown		'p/1/u/'
 complete gdb		'n/-d/d/ n/*/c/'
-complete uncomplete 	'p/*/X/'
-complete find 		'n/-name/f/' 'n/-newer/f/' 'n/-{,n}cpio/f/' \
+complete uncomplete		'p/*/X/'
+complete find		'n/-name/f/' 'n/-newer/f/' 'n/-{,n}cpio/f/' \
 			'n/-exec/c/' 'n/-ok/c/' 'n/-user/u/' 'n/-group/g/' \
 			'n/-fstype/(nfs 4.2)/' 'n/-type/(b c d f l p s)/' \
 			'c/-/(name newer cpio ncpio exec ok user group fstype type atime \
 			ctime depth inum ls mtime nogroup nouser perm print prune \
 			size xdev)/' \
 			'p/*/d/'
-complete ln 		'C/?/f/' 'p/1/(-s)/' 'n/-s/x:[first arg is path to original file]/' \
+complete ln			'C/?/f/' 'p/1/(-s)/' 'n/-s/x:[first arg is path to original file]/' \
 			'N/-s/x:[second arg is new link]/'
 complete ipfw		'p/1/(flush add delete list show zero table)/' \
 			'n/add/(allow permit accept pass deny drop reject \
@@ -116,30 +117,30 @@ endif
 
 set GRC = `which grc`
 #if ("$TERM" != "dumb" && "$GRC" != "") then
-if ("$GRC" != "") then
-	alias colourify		"$GRC --colour auto"
-	alias configure		'colourify ./configure'
-	alias diff		'colourify diff'
-	alias make		'colourify make'
-	alias gcc		'colourify gcc'
-	alias g++		'colourify g++'
-	alias as		'colourify as'
-	alias gas		'colourify gas'
-	alias ld		'colourify ld'
-	alias netstat		'colourify netstat'
-	alias ping		'colourify ping'
-	alias traceroute	'colourify traceroute'
-	alias head		'colourify head'
-	alias tail		'colourify tail'
-	alias dig		'colourify dig'
-	alias mount		'colourify mount'
-	alias ps		'colourify ps'
-	alias mtr		'colourify mtr'
-	alias df		'colourify df'
-	alias la		'colourify ls -a'
-	alias lf		'colourify ls -FA'
-	alias ll		'colourify ls -lA'
-endif
+#if ("$GRC" != "") then
+#	alias colourify		"$GRC --colour auto"
+#	alias configure		'colourify ./configure'
+#	alias diff		'colourify diff'
+#	alias make		'colourify make'
+#	alias gcc		'colourify gcc'
+#	alias g++		'colourify g++'
+#	alias as		'colourify as'
+#	alias gas		'colourify gas'
+#	alias ld		'colourify ld'
+#	alias netstat		'colourify netstat'
+#	alias ping		'colourify ping'
+#	alias traceroute	'colourify traceroute'
+#	alias head		'colourify head'
+#	alias tail		'colourify tail'
+#	alias dig		'colourify dig'
+#	alias mount		'colourify mount'
+#	alias ps		'colourify ps'
+#	alias mtr		'colourify mtr'
+#	alias df		'colourify df'
+#	alias la		'colourify ls -a'
+#	alias lf		'colourify ls -FA'
+#	alias ll		'colourify ls -lA'
+#endif
 
 if ( `where tmux` != "" ) then
 	set __tmux_cmd_names = (attach-session bind-key break-pane capture-pane clear-history \
@@ -162,7 +163,7 @@ if ( `where tmux` != "" ) then
 
 	alias __tmux_sessions 'tmux list-sessions | cut -d : -f 1'
 	alias __tmux_windows  'tmux list-windows  | cut -d " " -f 1-2 | sed -e "s/://"'
-	alias __tmux_panes    'tmux list-panes    | cut -d : -f 1'
+	alias __tmux_panes	  'tmux list-panes	  | cut -d : -f 1'
 	alias __tmux_clients  'tmux list-clients  | cut -d " " -f 1-2 | sed -e "s/://"'
 
 	# Define the completions (see the tcsh man page).
@@ -181,20 +182,20 @@ endif
 
 alias apg "apg -m24 -M NCL -a 1"
 
-#setenv LANG en_US.UTF-8
+setenv LANG en_US.UTF-8
 
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 # BACKSPACE for Linux
 #	stty erase '^H' >& /dev/null 
-        set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
-        if ($CENTOSVER == ".el7") then
-                alias dmesg "dmesg -T -L"
+		set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
+		if ($CENTOSVER == ".el7") then
+				alias dmesg "dmesg -T -L"
 	else
 		dmesg -V >& /dev/null
 		if ($? == 0) then
-	                alias dmesg "dmesg -T"
+					alias dmesg "dmesg -T"
 		endif
-        endif
+		endif
 endif
 
 setenv LESS_TERMCAP_mb `printf "\033[1;31m"`

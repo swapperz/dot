@@ -37,6 +37,12 @@ set incsearch		" do incremental searching
 
 set ttyfast
 
+" size of a hard tabstop
+set tabstop=4
+
+" size of an "indent"
+set shiftwidth=4
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 

@@ -40,6 +40,8 @@ set ttyfast
 " size of a hard tabstop
 set tabstop=4
 
+set iskeyword-=\/
+
 " size of an "indent"
 set shiftwidth=4
 

@@ -4,9 +4,11 @@
 
 alias h		history 100
 alias j		jobs -l
-alias la	ls -a
-alias lf	ls -FA
-alias ll	ls -lA
+alias ls	ls --color=auto
+alias la	ls --color=auto -a
+alias lf	ls --color=auto -FA
+alias ll	ls --color=auto -lA
+alias grep	grep --color=auto
 
 umask 22
 
@@ -17,7 +19,7 @@ setenv	EDITOR		vim
 #setenv	PAGER		more
 setenv	PAGER		less
 setenv	BLOCKSIZE	K
-setenv	GREP_OPTIONS	"--color=auto"
+#setenv	GREP_OPTIONS	"--color=auto"
 
 if ($?prompt) then
 #	set prompt	= "\n`whoami`@%M: %~\n# "
@@ -187,15 +189,17 @@ setenv LANG en_US.UTF-8
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 # BACKSPACE for Linux
 #	stty erase '^H' >& /dev/null 
-		set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
-		if ($CENTOSVER == ".el7") then
+	set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
+	if ($CENTOSVER == ".el7") then
 				alias dmesg "dmesg -T -L"
 	else
 		dmesg -V >& /dev/null
 		if ($? == 0) then
 					alias dmesg "dmesg -T"
 		endif
-		endif
+	endif
+
+	alias realpath	readlink -f 
 endif
 
 setenv LESS_TERMCAP_mb `printf "\033[1;31m"`

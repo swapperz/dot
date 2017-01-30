@@ -28,7 +28,7 @@ ZSH_THEME="tjkirch"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -50,11 +50,11 @@ ZSH_THEME="tjkirch"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history-substring-search colored-man git svn httpie zsh-syntax-highlighting)
+plugins=(history-substring-search colored-man git svn httpie zsh-syntax-highlighting autojump command-not-found)
 
 # User configuration
 
-export PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/X11R6/bin:/root/bin:/usr/local/av/bin/"
+export PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/X11R6/bin:$HOME/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -84,24 +84,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [ -f /usr/bin/grc -o -f /usr/local/bin/grc ]
-then
-	alias ping="grc --colour=auto ping"
-	alias traceroute="grc --colour=auto traceroute"
-	alias make="grc --colour=auto make"
-	alias diff="grc --colour=auto diff"
-	alias cvs="grc --colour=auto cvs"
-	alias netstat="grc --colour=auto netstat"
-	alias ifconfig="grc --colour=auto ifconfig"
-	alias ps="grc --colour=auto ps"
-	alias mtr="grc --colour=auto mtr"
-	alias mount="grc --colour=auto mount"
-	alias ll="grc --colour=auto ls -la"
-	alias la="grc --colour=auto ls -la"
-	alias diff="grc --colour=auto diff"
-	alias dig="grc --colour=auto dig"
-fi
-
 alias reload='source ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias zshrc='vim ~/.zshrc'
@@ -110,6 +92,8 @@ alias tcshrc='vim ~/.tcshrc'
 alias null='cat /dev/null'
 alias apg="apg -m24 -M NCL -a 1"
 
+alias h=history
+#alias ll='ls -lAh'
 
 if [ "$OSTYPE" = "linux" -o "$OSTYPE" = "linux-gnu" ]
 then
@@ -124,17 +108,55 @@ then
 			alias dmesg="dmesg -T"
 		fi
 	fi
+	alias realpath  readlink -f
 fi
 
-bindkey "\033[1~" beginning-of-line	# Home
-bindkey "\033[4~" end-of-line		# End
+if [ -f /usr/bin/grc -o -f /usr/local/bin/grc ]
+then
+	alias ping="grc --colour=auto ping"
+	alias traceroute="grc --colour=auto traceroute"
+	alias make="grc --colour=auto make"
+	alias diff="grc --colour=auto diff"
+	alias cvs="grc --colour=auto cvs"
+#	alias netstat="grc --colour=auto netstat"
+	alias ifconfig="grc --colour=auto ifconfig"
+#	alias ps="grc --colour=auto ps"
+	alias mtr="grc --colour=auto mtr"
+	alias mount="grc --colour=auto mount"
+#	alias ll="grc --colour=auto ls -la"
+#	alias la="grc --colour=auto ls -la"
+	alias dig="grc --colour=auto dig"
+fi
+
+#bindkey "\033[1~" beginning-of-line	# Home
+#bindkey "\033[4~" end-of-line			# End
+
+bindkey "^[OB" down-line-or-search
+bindkey "^[OC" forward-char
+bindkey "^[OD" backward-char
+bindkey "^[OF" end-of-line
+bindkey "^[OH" beginning-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[[4~" end-of-line
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
+bindkey "^?" backward-delete-char
 
 # list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+#zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+setopt menucomplete
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
 
 # allow one error for every three characters typed in approximate completer
 zstyle -e ':completion:*:approximate:*' max-errors \
 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
-# BACKSPACE for Linux 
-#stty erase '^H'
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=$color[cyan]=$color[red]"
+
+autoload -U zcalc
+
+source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#export LESSCHARSET=UTF-8
+#push-line-or-edit 

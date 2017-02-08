@@ -158,6 +158,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=$color[c
 autoload -U zcalc
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #export LESSCHARSET=UTF-8
 #push-line-or-edit 

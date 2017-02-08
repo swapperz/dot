@@ -128,6 +128,8 @@ then
 	alias dig="grc --colour=auto dig"
 fi
 
+alias ls="ls -A --color=auto"
+
 #bindkey "\033[1~" beginning-of-line	# Home
 #bindkey "\033[4~" end-of-line			# End
 
@@ -156,7 +158,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=$color[c
 
 autoload -U zcalc
 
-source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #export LESSCHARSET=UTF-8
 #push-line-or-edit 

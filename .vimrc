@@ -26,6 +26,33 @@ set ttyfast
 nmap <C-N><C-N> :set invnumber<CR>
 highlight LineNr ctermfg=grey
 
+"setlocal spelllang=en spell
+
+set t_Co=256
+
+set backspace=indent,eol,start
+
+if has('multi_byte') && &encoding ==# 'utf-8'
+  let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
+  let &fillchars = 'stl: ,stlnc: ,vert:│'
+
+  if has('patch-7.4.338')
+    let &showbreak = nr2char(8618).' ' " Show ↪ at the beginning of wrapped lines
+    set breakindent
+    set breakindentopt=sbr
+  endif
+endif
+
+set showmatch 
+set hlsearch
+set incsearch
+set ignorecase
+
+set lz
+
+"set listchars=tab:··
+"set list
+
 " size of a hard tabstop
 set tabstop=4
 
@@ -96,3 +123,6 @@ menu Encoding.cp866 :e ++enc=cp866 ++ff=dos<CR>
 menu Encoding.utf-8 :e ++enc=utf8 <CR>
 menu Encoding.koi8-u :e ++enc=koi8-u ++ff=unix<CR>
 map <F8> :emenu Encoding.<TAB>
+
+map <silent> <F9>   :Explore<CR>
+map <silent> <S-F9> :sp +Explore<CR>

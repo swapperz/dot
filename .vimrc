@@ -22,7 +22,8 @@ set incsearch		" do incremental searching
 
 set ttyfast
 
-set number
+"set number
+nmap <C-N><C-N> :set invnumber<CR>
 highlight LineNr ctermfg=grey
 
 " size of a hard tabstop

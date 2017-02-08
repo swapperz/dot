@@ -91,9 +91,7 @@ alias cshrc='vim ~/.cshrc'
 alias tcshrc='vim ~/.tcshrc'
 alias null='cat /dev/null'
 alias apg="apg -m24 -M NCL -a 1"
-
 alias h=history
-#alias ll='ls -lAh'
 
 if [ "$OSTYPE" = "linux" -o "$OSTYPE" = "linux-gnu" ]
 then

@@ -129,6 +129,7 @@ then
 fi
 
 alias ls="ls -A --color=auto"
+tabs 4
 
 #bindkey "\033[1~" beginning-of-line	# Home
 #bindkey "\033[4~" end-of-line			# End

@@ -6,7 +6,7 @@ export ZSH=~/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="tjkirch"
+#ZSH_THEME="tjkirch"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -84,6 +84,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+tabs 4
+
+if [[ "$OSTYPE" =~ "freebsd" ]]
+then 
+	alias ls='ls -A'
+else
+	alias ls='ls -A --color=auto'
+fi
+
 alias reload='source ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias zshrc='vim ~/.zshrc'
@@ -94,7 +103,7 @@ alias apg="apg -m24 -M NCL -a 1"
 alias h='history'
 alias less='less -x4'
 
-if [ "$OSTYPE" =~ "/linux/i" ]
+if [[ "$OSTYPE" =~ "linux" ]]
 then
 	CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
 	if [ "$CENTOSVER" = ".el7" ]
@@ -127,15 +136,6 @@ then
 	alias dig='grc --colour=auto dig'
 fi
 
-if [ "$OSTYPE" =~ "/freebsd/i" ]
-then 
-	alias ls='ls -A'
-else
-	alias ls='ls -A --color=auto'
-fi
-
-tabs 4
-
 bindkey "^[OB" 	down-line-or-search
 bindkey "^[OC" 	forward-char
 bindkey "^[OD" 	backward-char
@@ -166,3 +166,17 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #export LESSCHARSET=UTF-8
 #push-line-or-edit 
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[green]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}⚡"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+function prompt_char {
+    if [ $UID -eq 0 ]; then echo "%{$fg[red]%}#%{$reset_color%}"; else echo $; fi
+}
+
+PROMPT='%(?, ,%{$fg[red]%}FAIL: $?%{$reset_color%}
+)
+%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}: %{$fg_bold[blue]%}%~%{$reset_color%}$(git_prompt_info)
+%_$(prompt_char) '

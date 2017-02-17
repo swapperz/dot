@@ -92,6 +92,7 @@ alias tcshrc='vim ~/.tcshrc'
 alias null='cat /dev/null'
 alias apg="apg -m24 -M NCL -a 1"
 alias h=history
+alias less="less -x4"
 
 if [ "$OSTYPE" = "linux" -o "$OSTYPE" = "linux-gnu" ]
 then
@@ -126,23 +127,30 @@ then
 	alias dig="grc --colour=auto dig"
 fi
 
-alias ls="ls -A --color=auto"
+if [ "$OSTYPE" = 'FreeBSD' ]
+then 
+	alias ls="ls -A"
+else
+	alias ls="ls -A --color=auto"
+fi
+
 tabs 4
+#LESS="-x4"
 
 #bindkey "\033[1~" beginning-of-line	# Home
 #bindkey "\033[4~" end-of-line			# End
 
-bindkey "^[OB" down-line-or-search
-bindkey "^[OC" forward-char
-bindkey "^[OD" backward-char
-bindkey "^[OF" end-of-line
-bindkey "^[OH" beginning-of-line
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[3~" delete-char
-bindkey "^[[4~" end-of-line
-bindkey "^[[5~" up-line-or-history
-bindkey "^[[6~" down-line-or-history
-bindkey "^?" backward-delete-char
+bindkey "^[OB" 	down-line-or-search
+bindkey "^[OC" 	forward-char
+bindkey "^[OD" 	backward-char
+bindkey "^[OF" 	end-of-line
+bindkey "^[OH" 	beginning-of-line
+bindkey "^[[1~"	beginning-of-line
+bindkey "^[[3~"	delete-char
+bindkey "^[[4~"	end-of-line
+bindkey "^[[5~"	up-line-or-history
+bindkey "^[[6~"	down-line-or-history
+bindkey "^?" 	backward-delete-char
 
 # list of completers to use
 #zstyle ':completion:*::::' completer _expand _complete _ignored _approximate

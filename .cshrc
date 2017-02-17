@@ -4,41 +4,50 @@
 
 alias h		history 100
 alias j		jobs -l
-alias ls	ls --color=auto
-alias la	ls --color=auto -a
-alias lf	ls --color=auto -FA
-alias ll	ls --color=auto -lA
-alias grep	grep --color=auto
+alias less	less -x4
+if ($OSTYPE == 'FreeBSD') then
+	alias ls	ls -A
+	alias la	ls -a
+	alias lf	ls -FA
+	alias ll	ls -lA
+	alias grep	grep --color=auto
+else
+	alias ls	ls -A --color=auto
+	alias la	ls --color=auto -a
+	alias lf	ls --color=auto -FA
+	alias ll	ls --color=auto -lA
+	alias grep	grep --color=auto
+endif
 
 umask 22
 
 set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
 
+setenv	LANG		en_US.UTF-8
 setenv	CLICOLOR	YES
 setenv	EDITOR		vim
 #setenv	PAGER		more
-setenv	PAGER		less
+setenv	PAGER		"less -x4"
 setenv	BLOCKSIZE	K
-#setenv	GREP_OPTIONS	"--color=auto"
 
 if ($?prompt) then
-#	set prompt	= "\n`whoami`@%M: %~\n# "
-#	set prompt	= "\n%{\e[31;1m%}root%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "
-	set prompt	= "\n%{\e[31;1m%}`whoami`%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "
+#	set prompt		= "\n`whoami`@%M: %~\n# "
+#	set prompt		= "\n%{\e[31;1m%}root%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "
+	set prompt		= "\n%{\e[31;1m%}`whoami`%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "
 	set filec
 	set history		= 1000
 	set savehist	= 1000
-	set mail	= (/var/mail/$USER)
+	set mail		= (/var/mail/$USER)
 	if ( $?tcsh ) then
 		bindkey "^W"	backward-delete-word
 		bindkey -k up	history-search-backward
 		bindkey -k down history-search-forward
-		bindkey "\e[1~" beginning-of-line	# Home
-		bindkey "\e[7~" beginning-of-line	# Home rxvt
-		bindkey "\e[2~" overwrite-mode		# Ins
-		bindkey "\e[3~" delete-char		# Delete
-		bindkey "\e[4~" end-of-line		# End
-		bindkey "\e[8~" end-of-line		# End rxvt
+		bindkey "\e[1~" beginning-of-line		# Home
+		bindkey "\e[7~" beginning-of-line		# Home rxvt
+		bindkey "\e[2~" overwrite-mode			# Ins
+		bindkey "\e[3~" delete-char				# Delete
+		bindkey "\e[4~" end-of-line				# End
+		bindkey "\e[8~" end-of-line				# End rxvt
 	endif
 endif
 
@@ -50,11 +59,14 @@ if ($shell =~ *tcsh) then
 else
 	alias reload	'source ~/.cshrc'
 endif
-alias vimrc	'vim ~/.vimrc'
-alias zshrc	'vim ~/.zshrc'
-alias cshrc	'vim ~/.cshrc'
+alias vimrc		'vim ~/.vimrc'
+alias zshrc		'vim ~/.zshrc'
+alias cshrc		'vim ~/.cshrc'
 alias tcshrc	'vim ~/.tcshrc'
-alias null	'cat /dev/null'
+alias null		'cat /dev/null'
+alias apg		'apg -m24 -M NCL -a 1'
+
+tabs 4
 
 set _complete=1
 
@@ -68,7 +80,7 @@ complete scp		"c,*:/,F:/," "c,*:,F:$HOME," 'c/*@/$hosts/:/'
 complete rsync		"c,*:/,F:/," "c,*:,F:$HOME," 'c/*@/$hosts/:/'
 complete ping		'p/1/$hosts/'
 complete traceroute	'p/1/$hosts/'
-complete mtr 		'p/1/$hosts/'
+complete mtr		'p/1/$hosts/'
 complete telnet		'p/1/$hosts/' "p/2/x:'<port>'/" "n/*/n/"
 complete kill		'c/-/S/' 'p/1/(-)//'
 complete killall	'p/1/c/'
@@ -83,7 +95,7 @@ complete env		'c/*=/f/' 'p/1/e/=/' 'p/2/c/'
 complete chgrp		'p/1/g/'
 complete chown		'p/1/u/'
 complete gdb		'n/-d/d/ n/*/c/'
-complete uncomplete		'p/*/X/'
+complete uncomplete	'p/*/X/'
 complete find		'n/-name/f/' 'n/-newer/f/' 'n/-{,n}cpio/f/' \
 			'n/-exec/c/' 'n/-ok/c/' 'n/-user/u/' 'n/-group/g/' \
 			'n/-fstype/(nfs 4.2)/' 'n/-type/(b c d f l p s)/' \
@@ -118,31 +130,30 @@ if ( -r ~/.inputrc) then
 endif
 
 set GRC = `which grc`
-#if ("$TERM" != "dumb" && "$GRC" != "") then
-#if ("$GRC" != "") then
-#	alias colourify		"$GRC --colour auto"
-#	alias configure		'colourify ./configure'
-#	alias diff		'colourify diff'
-#	alias make		'colourify make'
-#	alias gcc		'colourify gcc'
-#	alias g++		'colourify g++'
-#	alias as		'colourify as'
-#	alias gas		'colourify gas'
-#	alias ld		'colourify ld'
+if ("$TERM" != "dumb" && "$GRC" != "") then
+	alias colourify		"$GRC --colour auto"
+	alias configure		'colourify ./configure'
+	alias diff			'colourify diff'
+	alias make			'colourify make'
+	alias gcc			'colourify gcc'
+	alias g++			'colourify g++'
+	alias as			'colourify as'
+	alias gas			'colourify gas'
+	alias ld			'colourify ld'
 #	alias netstat		'colourify netstat'
-#	alias ping		'colourify ping'
-#	alias traceroute	'colourify traceroute'
-#	alias head		'colourify head'
-#	alias tail		'colourify tail'
-#	alias dig		'colourify dig'
-#	alias mount		'colourify mount'
-#	alias ps		'colourify ps'
-#	alias mtr		'colourify mtr'
-#	alias df		'colourify df'
-#	alias la		'colourify ls -a'
-#	alias lf		'colourify ls -FA'
-#	alias ll		'colourify ls -lA'
-#endif
+	alias ping			'colourify ping'
+	alias traceroute	'colourify traceroute'
+	alias head			'colourify head'
+#	alias tail			'colourify tail'
+	alias dig			'colourify dig'
+	alias mount			'colourify mount'
+#	alias ps			'colourify ps'
+	alias mtr			'colourify mtr'
+	alias df			'colourify df'
+#	alias la			'colourify ls -a'
+#	alias lf			'colourify ls -FA'
+#	alias ll			'colourify ls -lA'
+endif
 
 if ( `where tmux` != "" ) then
 	set __tmux_cmd_names = (attach-session bind-key break-pane capture-pane clear-history \
@@ -182,20 +193,17 @@ if ( `where tmux` != "" ) then
 		'n/-t/`__tmux_clients; __tmux_panes; __tmux_windows; __tmux_sessions`/'
 endif
 
-alias apg "apg -m24 -M NCL -a 1"
-
-setenv LANG en_US.UTF-8
 
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
-# BACKSPACE for Linux
+#	BACKSPACE for Linux
 #	stty erase '^H' >& /dev/null 
 	set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
 	if ($CENTOSVER == ".el7") then
-				alias dmesg "dmesg -T -L"
+		alias dmesg "dmesg -T -L"
 	else
 		dmesg -V >& /dev/null
 		if ($? == 0) then
-					alias dmesg "dmesg -T"
+			alias dmesg "dmesg -T"
 		endif
 	endif
 

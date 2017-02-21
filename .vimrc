@@ -32,16 +32,16 @@ set t_Co=256
 
 set backspace=indent,eol,start
 
-if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
-  let &fillchars = 'stl: ,stlnc: ,vert:│'
-
+"if has('multi_byte') && &encoding ==# 'utf-8'
+"  let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
+"  let &fillchars = 'stl: ,stlnc: ,vert:│'
+"
 "  if has('patch-7.4.338')
-"    let &showbreak = nr2char(8618).' ' " Show ↪ at the beginning of wrapped lines
-"    set breakindent
-"    set breakindentopt=sbr
+"	 let &showbreak = nr2char(8618).' ' " Show ↪ at the beginning of wrapped lines
+"	 set breakindent
+"	 set breakindentopt=sbr
 "  endif
-endif
+"endif
 
 set showmatch
 set hlsearch
@@ -62,7 +62,7 @@ set shiftwidth=4
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" CTRL-U in insert mode deletes a lot.	Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
@@ -95,16 +95,14 @@ if has("autocmd")
   " Also don't do it when the mark is in the first line, that is the default
   " position when opening a file.
   autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+	\ if line("'\"") > 1 && line("'\"") <= line("$") |
+	\	exe "normal! g`\"" |
+	\ endif
 
   augroup END
 
 else
-
   set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -118,6 +116,11 @@ endif
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre * :%retab!
 
+"set background=light
+"set background=dark
+" comment's color
+hi Comment ctermfg=8
+
 set wildmenu
 set wcm=<Tab>
 menu Encoding.koi8-r :e ++enc=koi8-r ++ff=unix<CR>
@@ -127,5 +130,5 @@ menu Encoding.utf-8 :e ++enc=utf8 <CR>
 menu Encoding.koi8-u :e ++enc=koi8-u ++ff=unix<CR>
 map <F8> :emenu Encoding.<TAB>
 
-map <silent> <F9>   :Explore<CR>
+map <silent> <F9>	:Explore<CR>
 map <silent> <S-F9> :sp +Explore<CR>

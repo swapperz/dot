@@ -64,9 +64,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+#	export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#	export EDITOR='mvim'
 # fi
 
 # Compilation flags
@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 tabs 4
 
 if [[ "$OSTYPE" =~ "freebsd" ]]
-then 
+then
 	alias ls='ls -A'
 else
 	alias ls='ls -A --color=auto'
@@ -136,17 +136,17 @@ then
 	alias dig='grc --colour=auto dig'
 fi
 
-bindkey "^[OB" 	down-line-or-search
-bindkey "^[OC" 	forward-char
-bindkey "^[OD" 	backward-char
-bindkey "^[OF" 	end-of-line
-bindkey "^[OH" 	beginning-of-line
+bindkey "^[OB"	down-line-or-search
+bindkey "^[OC"	forward-char
+bindkey "^[OD"	backward-char
+bindkey "^[OF"	end-of-line
+bindkey "^[OH"	beginning-of-line
 bindkey "^[[1~"	beginning-of-line
 bindkey "^[[3~"	delete-char
 bindkey "^[[4~"	end-of-line
 bindkey "^[[5~"	up-line-or-history
 bindkey "^[[6~"	down-line-or-history
-bindkey "^?" 	backward-delete-char
+bindkey "^?"	backward-delete-char
 
 # list of completers to use
 #zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
@@ -165,7 +165,7 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #export LESSCHARSET=UTF-8
-#push-line-or-edit 
+#push-line-or-edit
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
@@ -173,7 +173,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}⚡"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 function prompt_char {
-    if [ $UID -eq 0 ]; then echo "%{$fg[red]%}#%{$reset_color%}"; else echo $; fi
+	if [ $UID -eq 0 ]; then echo "%{$fg[red]%}#%{$reset_color%}"; else echo $; fi
 }
 
 PROMPT='%(?, ,%{$fg[red]%}FAIL: $?%{$reset_color%}

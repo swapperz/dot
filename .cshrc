@@ -72,7 +72,7 @@ set _complete=1
 
 set hosts = (127.0.0.1 localhost)
 if ( -r ~/.ssh/known_hosts ) then
-	set hosts = ($hosts `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | tr ',' "\n"`) 
+	set hosts = ($hosts `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | tr ',' "\n"`)
 endif
 
 complete ssh		'p/1/$hosts/ c/-/"(l n)"/	n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/'
@@ -196,7 +196,7 @@ endif
 
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 #	BACKSPACE for Linux
-#	stty erase '^H' >& /dev/null 
+#	stty erase '^H' >& /dev/null
 	set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
 	if ($CENTOSVER == ".el7") then
 		alias dmesg "dmesg -T -L"
@@ -207,7 +207,7 @@ if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 		endif
 	endif
 
-	alias realpath	readlink -f 
+	alias realpath	readlink -f
 endif
 
 setenv LESS_TERMCAP_mb `printf "\033[1;31m"`

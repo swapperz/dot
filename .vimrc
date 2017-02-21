@@ -121,6 +121,12 @@ autocmd BufWritePre * :%retab!
 " comment's color
 hi Comment ctermfg=8
 
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [POS=%04l,%04v]\ [LEN=%L]
+"set laststatus=2
+
+set cursorline
+"set cursorcolumn
+
 set wildmenu
 set wcm=<Tab>
 menu Encoding.koi8-r :e ++enc=koi8-r ++ff=unix<CR>

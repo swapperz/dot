@@ -43,7 +43,7 @@ if has('multi_byte') && &encoding ==# 'utf-8'
 "  endif
 endif
 
-set showmatch 
+set showmatch
 set hlsearch
 set incsearch
 set ignorecase
@@ -114,6 +114,9 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%retab!
 
 set wildmenu
 set wcm=<Tab>

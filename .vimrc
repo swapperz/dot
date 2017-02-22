@@ -12,52 +12,15 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set nobackup		" do not keep a backup file, use versions instead
+" Turn backup off
+set nobackup
 set nowritebackup
-set noundofile		" keep an undo file (undo changes after closing)
+set noundofile
+
 set history=50		" keep 50 lines of command line history
 set ruler			" show the cursor position all the time
 set showcmd			" display incomplete commands
 set incsearch		" do incremental searching
-
-set ttyfast
-
-"set number
-nmap <C-N><C-N> :set invnumber<CR>
-highlight LineNr ctermfg=grey
-
-"setlocal spelllang=en spell
-
-set t_Co=256
-
-set backspace=indent,eol,start
-
-"if has('multi_byte') && &encoding ==# 'utf-8'
-"  let &listchars = 'trail:·,tab:»·,eol:¶,extends:→,precedes:←,nbsp:×'
-"  let &fillchars = 'stl: ,stlnc: ,vert:│'
-"
-"  if has('patch-7.4.338')
-"	 let &showbreak = nr2char(8618).' ' " Show ↪ at the beginning of wrapped lines
-"	 set breakindent
-"	 set breakindentopt=sbr
-"  endif
-"endif
-
-set showmatch
-set hlsearch
-set incsearch
-set ignorecase
-
-set lz
-
-"set listchars=tab:··
-"set list
-
-" size of a hard tabstop
-set tabstop=4
-
-" size of an "indent"
-set shiftwidth=4
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -66,16 +29,20 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
+" Switch syntax highlighting on when the terminal has colors or when using the
+" GUI (which always has colors).
 if &t_Co > 2 || has("gui_running")
   syntax on
+
+  " Also switch on highlighting the last used search pattern.
   set hlsearch
+
+  " I like highlighting strings inside C comments.
+  let c_comment_strings=1
 endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
@@ -98,9 +65,7 @@ if has("autocmd")
 	\ if line("'\"") > 1 && line("'\"") <= line("$") |
 	\	exe "normal! g`\"" |
 	\ endif
-
   augroup END
-
 else
   set autoindent		" always set autoindenting on
 endif " has("autocmd")
@@ -113,28 +78,110 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+if has('langmap') && exists('+langnoremap')
+  " Prevent that the langmap option applies to characters that result from a
+  " mapping.  If unset (default), this may break plugins (but it's backward
+  " compatible).
+  set langnoremap
+endif
+
+" Add optional packages.
+"
+" The matchit plugin makes the % command work better, but it is not backwards
+" compatible.
+packadd matchit
+
+" Additional settings
+
+set ttyfast
+
+" Show matching brackets when text indicator is over them
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Ignore case when searching
+set ignorecase
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+"set lz
+
+" For regular expressions turn magic on
+set magic
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+"set listchars=tab:··
+"set list
+
+" 1 tab == 4 spaces
+set tabstop=4
+set shiftwidth=4
+
+"setlocal spelllang=en spell
+
+set t_Co=256
+
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre * :%retab!
 
 "set background=light
 "set background=dark
+
 " comment's color
-hi Comment ctermfg=8
+highlight Comment ctermfg=8
+
+""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""
+" Always show the status line
+"set laststatus=2
+"
+"" Format the status line
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+"
+"" Returns true if paste mode is enabled
+"function! HasPaste()
+"	if &paste
+"		return 'PASTE MODE	'
+"	endif
+"	return ''
+"endfunction
+
 
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [POS=%04l,%04v]\ [LEN=%L]
 "set laststatus=2
 
+"set paste
+"set nopaste
+
+" vimdiff
+
 set cursorline
 "set cursorcolumn
 
+" Display line numbers
+nmap <F1>	:set invnumber<CR>
+nmap <C-F1> :set invrelativenumber<CR>
+highlight LineNr ctermfg=grey
+
+" charsets
 set wildmenu
 set wcm=<Tab>
-menu Encoding.koi8-r :e ++enc=koi8-r ++ff=unix<CR>
-menu Encoding.windows-1251 :e ++enc=cp1251 ++ff=dos<CR>
-menu Encoding.cp866 :e ++enc=cp866 ++ff=dos<CR>
-menu Encoding.utf-8 :e ++enc=utf8 <CR>
-menu Encoding.koi8-u :e ++enc=koi8-u ++ff=unix<CR>
+menu Encoding.koi8-r		:e ++enc=koi8-r ++ff=unix<CR>
+menu Encoding.windows-1251	:e ++enc=cp1251 ++ff=dos<CR>
+menu Encoding.cp866			:e ++enc=cp866 ++ff=dos<CR>
+menu Encoding.utf-8			:e ++enc=utf8 <CR>
+menu Encoding.koi8-u		:e ++enc=koi8-u ++ff=unix<CR>
 map <F8> :emenu Encoding.<TAB>
 
-map <silent> <F9>	:Explore<CR>
-map <silent> <S-F9> :sp +Explore<CR>
+map <silent> <F12>		:Explore<CR>
+map <silent> <S-F12>	:sp +Explore<CR>

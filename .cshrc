@@ -5,18 +5,21 @@
 alias h		history 100
 alias j		jobs -l
 alias less	less -x4
+
 if ($OSTYPE == 'FreeBSD') then
 	alias ls	ls -A
 	alias la	ls -a
 	alias lf	ls -FA
 	alias ll	ls -lA
 	alias grep	grep --color=auto
+	tabs -4
 else
 	alias ls	ls -A --color=auto
 	alias la	ls --color=auto -a
 	alias lf	ls --color=auto -FA
 	alias ll	ls --color=auto -lA
 	alias grep	grep --color=auto
+	tabs 4
 endif
 
 umask 22
@@ -65,8 +68,6 @@ alias cshrc		'vim ~/.cshrc'
 alias tcshrc	'vim ~/.tcshrc'
 alias null		'cat /dev/null'
 alias apg		'apg -m24 -M NCL -a 1'
-
-tabs 4
 
 set _complete=1
 
@@ -192,7 +193,6 @@ if ( `where tmux` != "" ) then
 		'N/*-client/`__tmux_clients`/' \
 		'n/-t/`__tmux_clients; __tmux_panes; __tmux_windows; __tmux_sessions`/'
 endif
-
 
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 #	BACKSPACE for Linux

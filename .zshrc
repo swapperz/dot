@@ -52,6 +52,9 @@ ENABLE_CORRECTION="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(history-substring-search colored-man git svn httpie zsh-syntax-highlighting autojump command-not-found)
 
+#HIST_FIND_NO_DUPS
+HIST_IGNORE_ALL_DUPS="true"
+
 # User configuration
 
 export PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/X11R6/bin:$HOME/bin"
@@ -84,13 +87,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-tabs 4
-
 if [[ "$OSTYPE" =~ "freebsd" ]]
 then
 	alias ls='ls -A'
+	tabs -4
 else
 	alias ls='ls -A --color=auto'
+	tabs 4
 fi
 
 alias reload='source ~/.zshrc'

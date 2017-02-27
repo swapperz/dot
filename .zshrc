@@ -89,11 +89,18 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ "$OSTYPE" =~ "freebsd" ]]
 then
+	setenv	CLICOLOR	YES
 	alias ls='ls -A'
-	tabs -4
+	if [[ "$TERM" -ne "su" ]]
+	then
+		tabs -4
+	fi
 else
 	alias ls='ls -A --color=auto'
-	tabs 4
+	if [[ -n "$TERM" ]]
+	then
+		tabs 4
+	fi
 fi
 
 alias reload='source ~/.zshrc'

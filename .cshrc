@@ -12,14 +12,18 @@ if ($OSTYPE == 'FreeBSD') then
 	alias lf	ls -FA
 	alias ll	ls -lA
 	alias grep	grep --color=auto
-	tabs -4
+	if ($?TERM != 'su') then
+		tabs -4
+	endif
 else
 	alias ls	ls -A --color=auto
 	alias la	ls --color=auto -a
 	alias lf	ls --color=auto -FA
 	alias ll	ls --color=auto -lA
 	alias grep	grep --color=auto
-	tabs 4
+	if ($?TERM) then
+		tabs 4
+	endif
 endif
 
 umask 22
@@ -131,7 +135,7 @@ if ( -r ~/.inputrc) then
 endif
 
 set GRC = `which grc`
-if ("$TERM" != "dumb" && "$GRC" != "") then
+if ($?TERM != "dumb" && $GRC != "") then
 	alias colourify		"$GRC --colour auto"
 	alias configure		'colourify ./configure'
 	alias diff			'colourify diff'

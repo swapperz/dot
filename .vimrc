@@ -89,7 +89,9 @@ endif
 "
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
-packadd matchit
+if v:version == 704 && has('patch1100')
+	packadd matchit
+endif
 
 " Additional settings
 

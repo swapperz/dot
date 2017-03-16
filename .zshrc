@@ -89,7 +89,8 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ "$OSTYPE" =~ "freebsd" ]]
 then
-	setenv	CLICOLOR	YES
+#	setenv	CLICOLOR	YES
+	export CLICOLOR="YES"
 	alias ls='ls -A'
 	if [[ "$TERM" -ne "su" ]]
 	then

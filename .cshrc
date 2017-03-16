@@ -38,7 +38,7 @@ setenv	PAGER		"less -x4"
 setenv	BLOCKSIZE	K
 
 if ($?LS_COLORS) then
-	setenv LS_COLORS ${LS_COLORS}:'di=0;35:'
+	setenv LS_COLORS "${LS_COLORS}:di=0;35:"
 else
 	setenv LS_COLORS ':di=0;35:'
 endif

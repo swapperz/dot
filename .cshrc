@@ -2,6 +2,8 @@
 # see also csh(1), environ(7).
 #
 
+set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
+
 alias h		history 100
 alias j		jobs -l
 alias less	less -x4
@@ -26,17 +28,14 @@ else
 		tabs 4
 	endif
 
-	if [ "$LS_COLORS" != "" ]
-	then
+	if ("$LS_COLORS" != "") then
 		setenv LS_COLORS "${LS_COLORS}:di=0;35:"
 	else
 		setenv LS_COLORS ':di=0;35:'
-	fi
+	endif
 endif
 
 umask 22
-
-set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
 
 setenv	LANG		en_US.UTF-8
 setenv	CLICOLOR	YES

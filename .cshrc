@@ -37,6 +37,12 @@ setenv	EDITOR		vim
 setenv	PAGER		"less -x4"
 setenv	BLOCKSIZE	K
 
+if ($?LS_COLORS) then
+	setenv LS_COLORS ${LS_COLORS}:'di=0;35:'
+else
+	setenv LS_COLORS ':di=0;35:'
+endif
+
 if ($?prompt) then
 #	set prompt		= "\n`whoami`@%M: %~\n# "
 #	set prompt		= "\n%{\e[31;1m%}root%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "

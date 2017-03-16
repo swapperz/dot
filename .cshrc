@@ -12,9 +12,10 @@ if ($OSTYPE == 'FreeBSD') then
 	alias lf	ls -FA
 	alias ll	ls -lA
 	alias grep	grep --color=auto
-	if ($?TERM != 'su') then
+	if ($TERM != "su") then
 		tabs -4
 	endif
+	setenv LSCOLORS 'fxfxcxdxbxegedabagacad'
 else
 	alias ls	ls -A --color=auto
 	alias la	ls --color=auto -a
@@ -24,6 +25,13 @@ else
 	if ($?TERM) then
 		tabs 4
 	endif
+
+	if [ "$LS_COLORS" != "" ]
+	then
+		setenv LS_COLORS "${LS_COLORS}:di=0;35:"
+	else
+		setenv LS_COLORS ':di=0;35:'
+	fi
 endif
 
 umask 22
@@ -36,13 +44,6 @@ setenv	EDITOR		vim
 #setenv	PAGER		more
 setenv	PAGER		"less -x4"
 setenv	BLOCKSIZE	K
-
-if [ $LS_COLORS != "" ]
-then
-	export LS_COLORS="${LS_COLORS}:di=0;35:"
-else
-	export LS_COLORS=':di=0;35:'
-fi
 
 if ($?prompt) then
 	set prompt		= "\n%{\e[31;1m%}`whoami`%{\e[37m%}@%{\e[33m%}%m%{\e[37m%}: %{\e[36m%}%/%{\e[37m%} \n#%{\e[0m%} "

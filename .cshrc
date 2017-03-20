@@ -28,7 +28,7 @@ else
 		tabs 4
 	endif
 
-	if ("$LS_COLORS" != "") then
+	if ($?LS_COLORS) then
 		setenv LS_COLORS "${LS_COLORS}:di=0;35:"
 	else
 		setenv LS_COLORS ':di=0;35:'

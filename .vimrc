@@ -133,7 +133,8 @@ set shiftwidth=4
 set t_Co=256
 
 autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufWritePre * :%retab!
+"autocmd BufWritePre !*.yml :%retab!
+autocmd BufWritePre * if (expand("<afile>")) != "ejabberd.yml" | :%retab!
 
 "set background=light
 "set background=dark

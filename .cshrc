@@ -14,9 +14,9 @@ if ($OSTYPE == 'FreeBSD') then
 	alias lf	ls -FA
 	alias ll	ls -lA
 	alias grep	grep --color=auto
-	if ($TERM != "su") then
-		tabs -4
-	endif
+#	if ($TERM != "su") then
+#		tabs -4
+#	endif
 	setenv LSCOLORS 'fxfxcxdxbxegedabagacad'
 else
 	alias ls	ls -A --color=auto
@@ -24,9 +24,9 @@ else
 	alias lf	ls --color=auto -FA
 	alias ll	ls --color=auto -lA
 	alias grep	grep --color=auto
-	if ($?TERM) then
-		tabs 4
-	endif
+#	if ($?TERM) then
+#		tabs 4
+#	endif
 
 	if ($?LS_COLORS) then
 		setenv LS_COLORS "${LS_COLORS}:di=0;35:"

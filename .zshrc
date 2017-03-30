@@ -92,16 +92,16 @@ then
 #	setenv	CLICOLOR	YES
 	export CLICOLOR="YES"
 	alias ls='ls -A'
-	if [[ "$TERM" -ne "su" ]]
-	then
-		tabs -4
-	fi
+#	if [[ "$TERM" -ne "su" ]]
+#	then
+#		tabs -4
+#	fi
 else
 	alias ls='ls -A --color=auto'
-	if [[ -n "$TERM" ]]
-	then
-		tabs 4
-	fi
+#	if [[ -n "$TERM" ]]
+#	then
+#		tabs 4
+#	fi
 fi
 
 alias reload='source ~/.zshrc'

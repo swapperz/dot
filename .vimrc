@@ -132,7 +132,15 @@ set shiftwidth=4
 
 set t_Co=256
 
-autocmd BufWritePre * :%s/\s\+$//e
+function! <SID>StripTrailingWhitespaces()
+	let l = line(".")
+	let c = col(".")
+	%s/\s\+$//e
+	call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+"autocmd BufWritePre * :%s/\s\+$//e
 "autocmd BufWritePre !*.yml :%retab!
 autocmd BufWritePre * if (expand("<afile>")) != "ejabberd.yml" | :%retab!
 
@@ -158,7 +166,6 @@ highlight Comment ctermfg=8
 "	endif
 "	return ''
 "endfunction
-
 
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [POS=%04l,%04v]\ [LEN=%L]
 "set laststatus=2

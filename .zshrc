@@ -92,12 +92,15 @@ then
 #	setenv	CLICOLOR	YES
 	export CLICOLOR="YES"
 	alias ls='ls -A'
+	alias iotop='top -m io -o total'
+
 #	if [[ "$TERM" -ne "su" ]]
 #	then
 #		tabs -4
 #	fi
 else
 	alias ls='ls -A --color=auto'
+
 #	if [[ -n "$TERM" ]]
 #	then
 #		tabs 4
@@ -113,6 +116,7 @@ alias null='cat /dev/null'
 alias apg="apg -m24 -M NCL -a 1"
 alias h='history'
 alias less='less -x4'
+alias 7ze='7za a -mhe=on -p'
 
 if [[ "$OSTYPE" =~ "linux" ]]
 then
@@ -191,3 +195,8 @@ PROMPT='%(?, ,%{$fg[red]%}FAIL: $?%{$reset_color%}
 )
 %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}: %{$fg_bold[white]%}%~%{$reset_color%}$(git_prompt_info)
 %_$(prompt_char) '
+
+if [ -f ~/.zshrc.local ]
+then
+	source ~/.zshrc.local
+fi

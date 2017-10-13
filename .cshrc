@@ -7,6 +7,7 @@ set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/
 alias h		history 100
 alias j		jobs -l
 alias less	less -x4
+alias 7ze	7za a -mhe=on -p
 
 if ($OSTYPE == 'FreeBSD') then
 	alias ls	ls -A
@@ -14,9 +15,12 @@ if ($OSTYPE == 'FreeBSD') then
 	alias lf	ls -FA
 	alias ll	ls -lA
 	alias grep	grep --color=auto
+	alias iotop	top -m io -o total
+
 #	if ($TERM != "su") then
 #		tabs -4
 #	endif
+
 	setenv LSCOLORS 'fxfxcxdxbxegedabagacad'
 else
 	alias ls	ls -A --color=auto
@@ -24,6 +28,7 @@ else
 	alias lf	ls --color=auto -FA
 	alias ll	ls --color=auto -lA
 	alias grep	grep --color=auto
+
 #	if ($?TERM) then
 #		tabs 4
 #	endif
@@ -226,3 +231,7 @@ setenv LESS_TERMCAP_se `printf "\033[0m"`
 setenv LESS_TERMCAP_so `printf "\033[1;44;33m"`
 setenv LESS_TERMCAP_ue `printf "\033[0m"`
 setenv LESS_TERMCAP_us `printf "\033[1;32m"`
+
+if ( -f ~/.tcshrc.local ) then
+	source ~/.tcshrc.local
+endif

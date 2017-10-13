@@ -132,6 +132,8 @@ set shiftwidth=4
 
 set t_Co=256
 
+set mps+=<:> "
+
 function! <SID>StripTrailingWhitespaces()
 	let l = line(".")
 	let c = col(".")
@@ -182,6 +184,8 @@ set cursorline
 nmap <F1>	:set invnumber<CR>
 nmap <C-F1> :set invrelativenumber<CR>
 highlight LineNr ctermfg=grey
+
+let g:netrw_liststyle = 3
 
 " charsets
 set wildmenu

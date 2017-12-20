@@ -210,7 +210,7 @@ endif
 
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 #	BACKSPACE for Linux
-#	stty erase '^H' >& /dev/null
+	stty erase '^H' >& /dev/null
 	set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
 	if ($CENTOSVER == ".el7") then
 		alias dmesg "dmesg -T -L"

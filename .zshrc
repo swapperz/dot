@@ -132,6 +132,8 @@ then
 		fi
 	fi
 	alias realpath='readlink -f'
+#	BACKSPACE for Linux
+	stty erase '^H' >& /dev/null
 fi
 
 if [ -f /usr/bin/grc -o -f /usr/local/bin/grc ]

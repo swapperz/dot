@@ -5,9 +5,9 @@ if exists("b:current_syntax")
   finish
 end
 
-setlocal iskeyword+=.
-setlocal iskeyword+=/
-setlocal iskeyword+=:
+"setlocal iskeyword+=.
+"setlocal iskeyword+=/
+"setlocal iskeyword+=:
 
 syn match ngxVariable '\$\(\w\+\|{\w\+}\)'
 syn match ngxVariableBlock '\$\(\w\+\|{\w\+}\)' contained
@@ -19,18 +19,18 @@ syn match ngxComment ' *#.*$'
 syn keyword ngxBoolean on
 syn keyword ngxBoolean off
 
-syn keyword ngxDirectiveBlock http         contained
-syn keyword ngxDirectiveBlock mail         contained
-syn keyword ngxDirectiveBlock events       contained
-syn keyword ngxDirectiveBlock server       contained
-syn keyword ngxDirectiveBlock types        contained
-syn keyword ngxDirectiveBlock location     contained
-syn keyword ngxDirectiveBlock upstream     contained
+syn keyword ngxDirectiveBlock http		   contained
+syn keyword ngxDirectiveBlock mail		   contained
+syn keyword ngxDirectiveBlock events	   contained
+syn keyword ngxDirectiveBlock server	   contained
+syn keyword ngxDirectiveBlock types		   contained
+syn keyword ngxDirectiveBlock location	   contained
+syn keyword ngxDirectiveBlock upstream	   contained
 syn keyword ngxDirectiveBlock charset_map  contained
 syn keyword ngxDirectiveBlock limit_except contained
-syn keyword ngxDirectiveBlock if           contained
-syn keyword ngxDirectiveBlock geo          contained
-syn keyword ngxDirectiveBlock map          contained
+syn keyword ngxDirectiveBlock if		   contained
+syn keyword ngxDirectiveBlock geo		   contained
+syn keyword ngxDirectiveBlock map		   contained
 syn keyword ngxDirectiveBlock split_clients contained
 
 syn keyword ngxDirectiveImportant include
@@ -38,7 +38,7 @@ syn keyword ngxDirectiveImportant root
 syn keyword ngxDirectiveImportant server
 syn keyword ngxDirectiveImportant server_name
 syn keyword ngxDirectiveImportant listen contained
-syn region  ngxDirectiveImportantListen matchgroup=ngxDirectiveImportant start=+listen+ skip=+\\\\\|\\\;+ end=+;+he=e-1 contains=ngxListenOptions,ngxString
+syn region	ngxDirectiveImportantListen matchgroup=ngxDirectiveImportant start=+listen+ skip=+\\\\\|\\\;+ end=+;+he=e-1 contains=ngxListenOptions,ngxString
 syn keyword ngxDirectiveImportant internal
 syn keyword ngxDirectiveImportant proxy_pass
 syn keyword ngxDirectiveImportant memcached_pass
@@ -48,22 +48,22 @@ syn keyword ngxDirectiveImportant uwsgi_pass
 syn keyword ngxDirectiveImportant try_files
 
 syn keyword ngxListenOptions default_server contained
-syn keyword ngxListenOptions ssl            contained
-syn keyword ngxListenOptions http2          contained
-syn keyword ngxListenOptions spdy           contained
+syn keyword ngxListenOptions ssl			contained
+syn keyword ngxListenOptions http2			contained
+syn keyword ngxListenOptions spdy			contained
 syn keyword ngxListenOptions proxy_protocol contained
-syn keyword ngxListenOptions setfib         contained
-syn keyword ngxListenOptions fastopen       contained
-syn keyword ngxListenOptions backlog        contained
-syn keyword ngxListenOptions rcvbuf         contained
-syn keyword ngxListenOptions sndbuf         contained
-syn keyword ngxListenOptions accept_filter  contained
-syn keyword ngxListenOptions deferred       contained
-syn keyword ngxListenOptions bind           contained
-syn keyword ngxListenOptions ipv6only       contained
-syn keyword ngxListenOptions reuseport      contained
-syn keyword ngxListenOptions so_keepalive   contained
-syn keyword ngxListenOptions keepidle       contained
+syn keyword ngxListenOptions setfib			contained
+syn keyword ngxListenOptions fastopen		contained
+syn keyword ngxListenOptions backlog		contained
+syn keyword ngxListenOptions rcvbuf			contained
+syn keyword ngxListenOptions sndbuf			contained
+syn keyword ngxListenOptions accept_filter	contained
+syn keyword ngxListenOptions deferred		contained
+syn keyword ngxListenOptions bind			contained
+syn keyword ngxListenOptions ipv6only		contained
+syn keyword ngxListenOptions reuseport		contained
+syn keyword ngxListenOptions so_keepalive	contained
+syn keyword ngxListenOptions keepidle		contained
 
 syn keyword ngxDirectiveControl break
 syn keyword ngxDirectiveControl return

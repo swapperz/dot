@@ -118,6 +118,11 @@ alias h='history'
 alias less='less -x4'
 alias 7ze='7za a -mhe=on -p'
 
+alias tcpdump='tcpdump -nn'
+alias trafshow='trafshow -n'
+alias iftop='iftop -nN'
+alias tshark='tshark -n'
+
 if [[ "$OSTYPE" =~ "linux" ]]
 then
 	CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
@@ -134,6 +139,7 @@ then
 	alias realpath='readlink -f'
 #	BACKSPACE for Linux
 #	stty erase '^H' >& /dev/null
+#	stty erase '^?' >& /dev/null
 fi
 
 if [ -f /usr/bin/grc -o -f /usr/local/bin/grc ]

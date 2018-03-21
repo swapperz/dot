@@ -4,10 +4,15 @@
 
 set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
 
-alias h		history 100
-alias j		jobs -l
-alias less	less -x4
-alias 7ze	7za a -mhe=on -p
+alias h			history 100
+alias j			jobs -l
+alias less		less -x4
+alias 7ze		7za a -mhe=on -p
+
+alias tcpdump	tcpdump -nn
+alias trafshow	trafshow -n
+alias iftop		iftop -nN
+alias tshark	tshark -n
 
 if ($OSTYPE == 'FreeBSD') then
 	alias ls	ls -A
@@ -211,6 +216,7 @@ endif
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
 #	BACKSPACE for Linux
 #	stty erase '^H' >& /dev/null
+#	stty erase '^?' >& /dev/null
 	set CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
 	if ($CENTOSVER == ".el7") then
 		alias dmesg "dmesg -T -L"

@@ -95,6 +95,10 @@ endif
 
 " Additional settings
 
+" Parse modeline
+set modeline
+set modelines=5
+
 set ttyfast
 
 " Show matching brackets when text indicator is over them
@@ -199,3 +203,4 @@ map <F8> :emenu Encoding.<TAB>
 
 map <silent> <F12>		:Explore<CR>
 map <silent> <S-F12>	:sp +Explore<CR>
+

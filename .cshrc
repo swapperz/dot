@@ -4,7 +4,7 @@
 
 set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
 
-alias h			history 100
+alias h			history 1000
 alias j			jobs -l
 alias less		less -x4
 alias 7ze		7za a -mhe=on -p

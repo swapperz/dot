@@ -68,12 +68,7 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #	export EDITOR='vim'
-# else
-#	export EDITOR='mvim'
 # fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
@@ -89,7 +84,6 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ "$OSTYPE" =~ "freebsd" ]]
 then
-#	setenv	CLICOLOR	YES
 	export CLICOLOR="YES"
 	alias ls='ls -A'
 	alias iotop='top -m io -o total'
@@ -117,7 +111,7 @@ alias apg="apg -m24 -M NCL -a 1"
 alias h='history'
 alias less='less -x4'
 alias 7ze='7za a -mhe=on -p'
-
+alias clear_history='cat /dev/null > $HISTFILE & source ~/.zshrc'
 alias tcpdump='tcpdump -nn'
 alias trafshow='trafshow -n'
 alias iftop='iftop -nN'

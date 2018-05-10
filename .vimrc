@@ -99,6 +99,9 @@ endif
 set modeline
 set modelines=5
 
+" Encryption method
+set cm=blowfish2
+
 set ttyfast
 
 " Show matching brackets when text indicator is over them

@@ -7,3 +7,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
+[submodule ".zsh/zsh-command-time"]
+	path = .zsh/zsh-command-time
+	url = https://github.com/popstas/zsh-command-time

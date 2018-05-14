@@ -153,7 +153,7 @@ then
 	alias dig='grc --colour=auto dig'
 fi
 
-bindkey "^[OB"	down-line-or-search
+#bindkey "^[OB"	down-line-or-search
 bindkey "^[OC"	forward-char
 bindkey "^[OD"	backward-char
 bindkey "^[OF"	end-of-line

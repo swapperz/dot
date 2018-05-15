@@ -102,7 +102,10 @@ set modelines=5
 " Encryption method
 set cm=blowfish2
 
-set ttyfast
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+"set ttyfast
 
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -117,10 +120,6 @@ set incsearch
 
 " Ignore case when searching
 set ignorecase
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-"set lz
 
 " For regular expressions turn magic on
 set magic
@@ -157,6 +156,8 @@ autocmd BufWritePre * :%retab!
 
 " comment's color
 highlight Comment ctermfg=8
+
+set guitablabel=%N/\ %t\ %M
 
 " tab's color
 hi TabLineFill cterm=none ctermfg=grey  ctermbg=cyan

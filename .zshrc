@@ -201,7 +201,7 @@ ZSH_COMMAND_TIME_MIN_SECONDS=3
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 
 # Message color.
-ZSH_COMMAND_TIME_COLOR="cyan"
+ZSH_COMMAND_TIME_COLOR="8"
 
 #export LESSCHARSET=UTF-8
 #push-line-or-edit

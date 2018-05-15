@@ -116,12 +116,14 @@ alias zshrc='vim ~/.zshrc'
 alias cshrc='vim ~/.cshrc'
 alias tcshrc='vim ~/.tcshrc'
 alias null='cat /dev/null'
+alias h='history'
+alias clear_history='cat /dev/null > $HISTFILE & source ~/.zshrc'
+
 alias vim='vim -p'
 alias apg="apg -m24 -M NCL -a 1"
-alias h='history'
 alias less='less -x4'
 alias 7ze='7za a -mhe=on -p'
-alias clear_history='cat /dev/null > $HISTFILE & source ~/.zshrc'
+
 alias tcpdump='tcpdump -nn'
 alias trafshow='trafshow -n'
 alias iftop='iftop -nN'

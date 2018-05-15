@@ -53,7 +53,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history-substring-search colored-man git svn httpie autojump command-not-found dircycle catimg encode64 zsh_reload)
+plugins=(history-substring-search colored-man git svn httpie command-not-found dircycle catimg encode64 zsh_reload systemd)
 
 # dircycle - Ctrl+Shift+Left/Right
 
@@ -66,6 +66,9 @@ export PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+
+setopt hist_ignore_space
+unsetopt correct_all
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

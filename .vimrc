@@ -149,9 +149,7 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-"autocmd BufWritePre * :%s/\s\+$//e
-"autocmd BufWritePre !*.yml :%retab!
-autocmd BufWritePre * if (expand("<afile>")) != "ejabberd.yml" | :%retab!
+autocmd BufWritePre * :%retab!
 
 "set background=light
 "set background=dark
@@ -187,12 +185,21 @@ highlight Comment ctermfg=8
 set cursorline
 "set cursorcolumn
 
-" Display line numbers
-nmap <F1>	:set invnumber<CR>
-nmap <C-F1> :set invrelativenumber<CR>
+let g:netrw_liststyle = 3
 highlight LineNr ctermfg=grey
 
-let g:netrw_liststyle = 3
+" Display line numbers
+nmap <F1> :set invnumber<CR>
+nmap <F2> :set invrelativenumber<CR>
+
+" Tabs
+set showtabline=2
+" Prev
+nmap <F5> :tabprevious<CR>
+" Next
+nmap <F6> :tabnext<CR>
+" Create
+nmap <F7> :tabnew<CR>
 
 " charsets
 set wildmenu
@@ -204,6 +211,6 @@ menu Encoding.utf-8			:e ++enc=utf8 <CR>
 menu Encoding.koi8-u		:e ++enc=koi8-u ++ff=unix<CR>
 map <F8> :emenu Encoding.<TAB>
 
-map <silent> <F12>		:Explore<CR>
-map <silent> <S-F12>	:sp +Explore<CR>
+map <silent> <F11>			:sp +Explore<CR>
+map <silent> <F12>			:Explore<CR>
 

@@ -7,6 +7,7 @@ set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/
 alias h			history 1000
 alias j			jobs -l
 alias less		less -x4
+alias vim		vim -p
 alias 7ze		7za a -mhe=on -p
 
 alias tcpdump	tcpdump -nn

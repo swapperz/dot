@@ -17,15 +17,15 @@ set nobackup
 set nowritebackup
 set noundofile
 
-set history=50		" keep 50 lines of command line history
-set ruler			" show the cursor position all the time
-set showcmd			" display incomplete commands
-set incsearch		" do incremental searching
+set history=50      " keep 50 lines of command line history
+set ruler           " show the cursor position all the time
+set showcmd         " display incomplete commands
+set incsearch       " do incremental searching
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" CTRL-U in insert mode deletes a lot.	Use CTRL-G u to first break undo,
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
@@ -62,12 +62,12 @@ if has("autocmd")
   " Also don't do it when the mark is in the first line, that is the default
   " position when opening a file.
   autocmd BufReadPost *
-	\ if line("'\"") > 1 && line("'\"") <= line("$") |
-	\	exe "normal! g`\"" |
-	\ endif
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
   augroup END
 else
-  set autoindent		" always set autoindenting on
+  set autoindent        " always set autoindenting on
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -75,7 +75,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+          \ | wincmd p | diffthis
 endif
 
 if has('langmap') && exists('+langnoremap')
@@ -90,7 +90,7 @@ endif
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
 if v:version == 704 && has('patch1100')
-	packadd matchit
+    packadd matchit
 endif
 
 " Additional settings
@@ -134,6 +134,7 @@ set ffs=unix,dos,mac
 " 1 tab == 4 spaces
 set tabstop=4
 set shiftwidth=4
+set expandtab        " tabs are spaces
 
 "setlocal spelllang=en spell
 
@@ -142,10 +143,10 @@ set t_Co=256
 set mps+=<:> "
 
 function! <SID>StripTrailingWhitespaces()
-	let l = line(".")
-	let c = col(".")
-	%s/\s\+$//e
-	call cursor(l, c)
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
@@ -156,6 +157,11 @@ autocmd BufWritePre * :%retab!
 
 " comment's color
 highlight Comment ctermfg=8
+
+" tab's color
+hi TabLineFill cterm=none ctermfg=grey  ctermbg=cyan
+hi TabLine     cterm=none ctermfg=white ctermbg=cyan
+hi TabLineSel  cterm=none ctermfg=black ctermbg=white
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -168,10 +174,10 @@ highlight Comment ctermfg=8
 "
 "" Returns true if paste mode is enabled
 "function! HasPaste()
-"	if &paste
-"		return 'PASTE MODE	'
-"	endif
-"	return ''
+"   if &paste
+"       return 'PASTE MODE  '
+"   endif
+"   return ''
 "endfunction
 
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [POS=%04l,%04v]\ [LEN=%L]
@@ -204,13 +210,13 @@ nmap <F7> :tabnew<CR>
 " charsets
 set wildmenu
 set wcm=<Tab>
-menu Encoding.koi8-r		:e ++enc=koi8-r ++ff=unix<CR>
-menu Encoding.windows-1251	:e ++enc=cp1251 ++ff=dos<CR>
-menu Encoding.cp866			:e ++enc=cp866 ++ff=dos<CR>
-menu Encoding.utf-8			:e ++enc=utf8 <CR>
-menu Encoding.koi8-u		:e ++enc=koi8-u ++ff=unix<CR>
+menu Encoding.koi8-r        :e ++enc=koi8-r ++ff=unix<CR>
+menu Encoding.windows-1251  :e ++enc=cp1251 ++ff=dos<CR>
+menu Encoding.cp866         :e ++enc=cp866 ++ff=dos<CR>
+menu Encoding.utf-8         :e ++enc=utf8 <CR>
+menu Encoding.koi8-u        :e ++enc=koi8-u ++ff=unix<CR>
 map <F8> :emenu Encoding.<TAB>
 
-map <silent> <F11>			:sp +Explore<CR>
-map <silent> <F12>			:Explore<CR>
+map <silent> <F11>          :sp +Explore<CR>
+map <silent> <F12>          :Explore<CR>
 

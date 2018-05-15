@@ -75,7 +75,7 @@ unsetopt correct_all
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#	export EDITOR='vim'
+#   export EDITOR='vim'
 # fi
 
 # ssh
@@ -92,21 +92,21 @@ unsetopt correct_all
 
 if [[ "$OSTYPE" =~ "freebsd" ]]
 then
-	export CLICOLOR="YES"
-	alias ls='ls -A'
-	alias iotop='top -m io -o total'
+    export CLICOLOR="YES"
+    alias ls='ls -A'
+    alias iotop='top -m io -o total'
 
-#	if [[ "$TERM" -ne "su" ]]
-#	then
-#		tabs -4
-#	fi
+#   if [[ "$TERM" -ne "su" ]]
+#   then
+#       tabs -4
+#   fi
 else
-	alias ls='ls -A --color=auto'
+    alias ls='ls -A --color=auto'
 
-#	if [[ -n "$TERM" ]]
-#	then
-#		tabs 4
-#	fi
+#   if [[ -n "$TERM" ]]
+#   then
+#       tabs 4
+#   fi
 fi
 
 #alias reload='source ~/.zshrc'
@@ -131,51 +131,51 @@ alias tshark='tshark -n'
 
 if [[ "$OSTYPE" =~ "linux" ]]
 then
-	CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
-	if [ "$CENTOSVER" = ".el7" ]
-	then
-		alias dmesg='dmesg -T -L'
-	else
-		dmesg -V >& /dev/null
-		if [ $? -eq 0 ]
-		then
-			alias dmesg='dmesg -T'
-		fi
-	fi
-	alias realpath='readlink -f'
-#	BACKSPACE for Linux
-#	stty erase '^H' >& /dev/null
-#	stty erase '^?' >& /dev/null
+    CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
+    if [ "$CENTOSVER" = ".el7" ]
+    then
+        alias dmesg='dmesg -T -L'
+    else
+        dmesg -V >& /dev/null
+        if [ $? -eq 0 ]
+        then
+            alias dmesg='dmesg -T'
+        fi
+    fi
+    alias realpath='readlink -f'
+#   BACKSPACE for Linux
+#   stty erase '^H' >& /dev/null
+#   stty erase '^?' >& /dev/null
 fi
 
 if [ -f /usr/bin/grc -o -f /usr/local/bin/grc ]
 then
-	alias ping='grc --colour=auto ping'
-	alias traceroute='grc --colour=auto traceroute'
-	alias make='grc --colour=auto make'
-	alias diff='grc --colour=auto diff'
-	alias cvs='grc --colour=auto cvs'
-#	alias netstat='grc --colour=auto netstat'
-	alias ifconfig='grc --colour=auto ifconfig'
-#	alias ps='grc --colour=auto ps'
-	alias mtr='grc --colour=auto mtr'
-	alias mount='grc --colour=auto mount'
-#	alias ll='grc --colour=auto ls -la'
-#	alias la='grc --colour=auto ls -la'
-	alias dig='grc --colour=auto dig'
+    alias ping='grc --colour=auto ping'
+    alias traceroute='grc --colour=auto traceroute'
+    alias make='grc --colour=auto make'
+    alias diff='grc --colour=auto diff'
+    alias cvs='grc --colour=auto cvs'
+#   alias netstat='grc --colour=auto netstat'
+    alias ifconfig='grc --colour=auto ifconfig'
+#   alias ps='grc --colour=auto ps'
+    alias mtr='grc --colour=auto mtr'
+    alias mount='grc --colour=auto mount'
+#   alias ll='grc --colour=auto ls -la'
+#   alias la='grc --colour=auto ls -la'
+    alias dig='grc --colour=auto dig'
 fi
 
-#bindkey "^[OB"	down-line-or-search
-bindkey "^[OC"	forward-char
-bindkey "^[OD"	backward-char
-bindkey "^[OF"	end-of-line
-bindkey "^[OH"	beginning-of-line
-bindkey "^[[1~"	beginning-of-line
-bindkey "^[[3~"	delete-char
-bindkey "^[[4~"	end-of-line
-bindkey "^[[5~"	up-line-or-history
-bindkey "^[[6~"	down-line-or-history
-bindkey "^?"	backward-delete-char
+#bindkey "^[OB" down-line-or-search
+bindkey "^[OC"  forward-char
+bindkey "^[OD"  backward-char
+bindkey "^[OF"  end-of-line
+bindkey "^[OH"  beginning-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[[4~" end-of-line
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
+bindkey "^?"    backward-delete-char
 
 # list of completers to use
 #zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
@@ -212,7 +212,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}⚡"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 function prompt_char {
-	if [ $UID -eq 0 ]; then echo "%{$fg[red]%}#%{$reset_color%}"; else echo $; fi
+    if [ $UID -eq 0 ]; then echo "%{$fg[red]%}#%{$reset_color%}"; else echo $; fi
 }
 
 PROMPT='%(?, ,%{$fg[red]%}FAIL: $?%{$reset_color%}
@@ -222,5 +222,5 @@ PROMPT='%(?, ,%{$fg[red]%}FAIL: $?%{$reset_color%}
 
 if [ -f ~/.zshrc.local ]
 then
-	source ~/.zshrc.local
+    source ~/.zshrc.local
 fi

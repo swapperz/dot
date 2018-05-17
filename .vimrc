@@ -47,7 +47,8 @@ if has("autocmd")
     " Use the default filetype settings, so that mail gets 'tw' set to 72,
     " 'cindent' is on in C files, etc.
     " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent off
+"   filetype plugin indent off
+    filetype plugin indent on
 
     " Put these in an autocmd group, so that we can delete them easily.
     augroup vimrcEx
@@ -109,11 +110,12 @@ set lazyredraw
 
 " Show matching brackets when text indicator is over them
 set showmatch
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
 " Highlight search results
-set hlsearch
+"set hlsearch
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -125,7 +127,9 @@ set ignorecase
 set magic
 
 " Use Unix as the standard file type
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
+
+set mps+=<:> "
 
 "set listchars=tab:··
 "set list
@@ -133,23 +137,19 @@ set ffs=unix,dos,mac
 " 1 tab == 4 spaces
 set tabstop=4
 set shiftwidth=4
-set expandtab        " tabs are spaces
+set expandtab                           " tabs are spaces
+set smarttab
+set softtabstop=4
+set autoindent
+set smartindent
+set backspace=indent,eol,start          "backspaces delete auto-inserted indents
+"set formatoptions-=ro
+"set preserveindent
+"set copyindent
 
 "setlocal spelllang=en spell
 
 set t_Co=256
-
-set mps+=<:> "
-
-function! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-autocmd BufWritePre * :%retab!
 
 "set background=light
 "set background=dark
@@ -164,36 +164,47 @@ hi TabLineFill cterm=none ctermfg=grey  ctermbg=cyan
 hi TabLine     cterm=none ctermfg=white ctermbg=cyan
 hi TabLineSel  cterm=none ctermfg=black ctermbg=white
 
+set cursorline
+"set cursorcolumn
+
+let g:netrw_liststyle=3
+highlight LineNr ctermfg=grey
+
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
-"set laststatus=2
-"
-"" Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-"
-"" Returns true if paste mode is enabled
-"function! HasPaste()
-"   if &paste
-"       return 'PASTE MODE  '
-"   endif
-"   return ''
-"endfunction
+set laststatus=2
 
+" Format the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
+endfunction
+
+hi StatusLine ctermbg=black ctermfg=darkgrey
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [POS=%04l,%04v]\ [LEN=%L]
 "set laststatus=2
 
 "set paste
 "set nopaste
 
-" vimdiff
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
-set cursorline
-"set cursorcolumn
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre * :%retab!
 
-let g:netrw_liststyle=3
-highlight LineNr ctermfg=grey
+set pastetoggle=<F4>
 
 " Display line numbers
 nmap <F1> :set invnumber<CR>

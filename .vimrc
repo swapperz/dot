@@ -100,8 +100,10 @@ endif
 set modeline
 set modelines=5
 
-" Encryption method
-set cm=blowfish2
+if v:version >= 740
+    " Encryption method
+    set cm=blowfish2
+endif
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw

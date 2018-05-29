@@ -60,6 +60,8 @@ plugins=(history-substring-search colored-man git svn httpie command-not-found d
 #HIST_FIND_NO_DUPS
 HIST_IGNORE_ALL_DUPS="true"
 
+ZSH_COMPDUMP="${HOME}/.zcompdump"
+
 # User configuration
 
 export PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/X11R6/bin:$HOME/bin"
@@ -74,21 +76,9 @@ unsetopt correct_all
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# fi
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+fi
 
 if [[ "$OSTYPE" =~ "freebsd" ]]
 then
@@ -109,6 +99,28 @@ else
 #   fi
 fi
 
+if [[ "$OSTYPE" =~ "linux" ]]
+then
+    CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
+    if [ "$CENTOSVER" = ".el7" ]
+    then
+        alias dmesg='dmesg -T -L'
+    else
+        dmesg -V >& /dev/null
+        if [ $? -eq 0 ]
+        then
+            alias dmesg='dmesg -T'
+        fi
+    fi
+    alias realpath='readlink -f'
+#   BACKSPACE for Linux
+#   stty erase '^H' >& /dev/null
+#   stty erase '^?' >& /dev/null
+fi
+
+#export LESSCHARSET=UTF-8
+#export LESS='-F -X -x4 $LESS'
+
 #alias reload='source ~/.zshrc'
 alias reload='src'
 alias vimrc='vim ~/.vimrc'
@@ -128,25 +140,6 @@ alias tcpdump='tcpdump -nn'
 alias trafshow='trafshow -n'
 alias iftop='iftop -nN'
 alias tshark='tshark -n'
-
-if [[ "$OSTYPE" =~ "linux" ]]
-then
-    CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
-    if [ "$CENTOSVER" = ".el7" ]
-    then
-        alias dmesg='dmesg -T -L'
-    else
-        dmesg -V >& /dev/null
-        if [ $? -eq 0 ]
-        then
-            alias dmesg='dmesg -T'
-        fi
-    fi
-    alias realpath='readlink -f'
-#   BACKSPACE for Linux
-#   stty erase '^H' >& /dev/null
-#   stty erase '^?' >& /dev/null
-fi
 
 if [ -f /usr/bin/grc -o -f /usr/local/bin/grc ]
 then
@@ -203,7 +196,6 @@ ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 # Message color.
 ZSH_COMMAND_TIME_COLOR="8"
 
-#export LESSCHARSET=UTF-8
 #push-line-or-edit
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[green]%}"

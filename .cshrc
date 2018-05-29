@@ -48,6 +48,8 @@ endif
 
 umask 22
 
+#setenv LESS        '-F -X -x4 $LESS'
+
 setenv  LANG        en_US.UTF-8
 setenv  CLICOLOR    YES
 setenv  EDITOR      vim

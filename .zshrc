@@ -101,6 +101,8 @@ fi
 
 if [[ "$OSTYPE" =~ "linux" ]]
 then
+    # override after other shell
+    export SHELL=`whereis -b zsh | cut -f2 -d' '`
     CENTOSVER=`uname -a | grep -Eo '\.el[0-9]'`
     if [ "$CENTOSVER" = ".el7" ]
     then

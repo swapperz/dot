@@ -217,6 +217,7 @@ if ( `where tmux` != "" ) then
 endif
 
 if ($OSTYPE == "linux" || $OSTYPE == "linux-gnu") then
+    setenv LANG en_US.UTF-8
 #   BACKSPACE for Linux
 #   stty erase '^H' >& /dev/null
 #   stty erase '^?' >& /dev/null

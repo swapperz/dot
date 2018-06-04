@@ -235,5 +235,5 @@ map <silent> <F11>          :sp +Explore<CR>
 map <silent> <F12>          :Explore<CR>
 
 if filereadable(expand("~/.vimrc_local"))
-    source ~/.vimrc_local
+    source ~/.vimrc.local
 endif

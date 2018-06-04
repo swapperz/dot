@@ -17,7 +17,7 @@ set nobackup
 set nowritebackup
 set noundofile
 
-set history=50      " keep 50 lines of command line history
+set history=150     " keep 150 lines of command line history
 set ruler           " show the cursor position all the time
 set showcmd         " display incomplete commands
 set incsearch       " do incremental searching

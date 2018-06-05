@@ -9,7 +9,7 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" allow backspacing over everything in insert mode
+" Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 " Turn backup off
@@ -116,9 +116,6 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" Highlight search results
-"set hlsearch
-
 " Makes search act like search in modern browsers
 set incsearch
 
@@ -156,12 +153,12 @@ set t_Co=256
 "set background=light
 "set background=dark
 
-" comment's color
+" Comment's color
 highlight Comment ctermfg=8
 
 set guitablabel=%N/\ %t\ %M
 
-" tab's color
+" Tab's color
 hi TabLineFill cterm=none ctermfg=grey  ctermbg=cyan
 hi TabLine     cterm=none ctermfg=white ctermbg=cyan
 hi TabLineSel  cterm=none ctermfg=black ctermbg=white
@@ -172,9 +169,6 @@ set cursorline
 let g:netrw_liststyle=3
 highlight LineNr ctermfg=grey
 
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
 
@@ -190,11 +184,6 @@ function! HasPaste()
 endfunction
 
 hi StatusLine ctermbg=black ctermfg=darkgrey
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [POS=%04l,%04v]\ [LEN=%L]
-"set laststatus=2
-
-"set paste
-"set nopaste
 
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -221,7 +210,7 @@ nmap <silent> <F6> :tabnext<CR>
 " Create
 nmap <silent> <F7> :tabnew<CR>
 
-" charsets
+" Changing the encoding
 set wildmenu
 set wcm=<Tab>
 menu Encoding.koi8-r        :e ++enc=koi8-r ++ff=unix<CR>
@@ -234,6 +223,7 @@ map <silent> <F8> :emenu Encoding.<TAB>
 map <silent> <F11>          :sp +Explore<CR>
 map <silent> <F12>          :Explore<CR>
 
+" Local settings
 if filereadable(expand("~/.vimrc_local"))
     source ~/.vimrc.local
 endif

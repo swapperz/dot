@@ -101,7 +101,7 @@ fi
 
 if [[ "$OSTYPE" =~ "linux" ]]
 then
-    # override after other shell
+    # Override after other shell
     export SHELL=`whereis -b zsh | cut -f2 -d' '`
     export LANG=en_US.UTF-8
 
@@ -126,6 +126,7 @@ fi
 #export LESS='-F -X -x4 $LESS'
 
 #alias reload='source ~/.zshrc'
+# zsh_reload
 alias reload='src'
 alias vimrc='vim ~/.vimrc'
 alias zshrc='vim ~/.zshrc'
@@ -216,6 +217,7 @@ PROMPT='%(?, ,%{$fg[red]%}FAIL: $?%{$reset_color%}
 %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}: %{$fg_bold[white]%}%~%{$reset_color%}$(git_prompt_info)
 %_$(prompt_char) '
 
+# Local settings
 if [ -f ~/.zshrc.local ]
 then
     source ~/.zshrc.local

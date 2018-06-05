@@ -242,6 +242,7 @@ setenv LESS_TERMCAP_so `printf "\033[1;44;33m"`
 setenv LESS_TERMCAP_ue `printf "\033[0m"`
 setenv LESS_TERMCAP_us `printf "\033[1;32m"`
 
+# Local settings
 if ( -f ~/.tcshrc.local ) then
     source ~/.tcshrc.local
 endif

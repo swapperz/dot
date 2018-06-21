@@ -141,6 +141,7 @@ set smarttab
 set softtabstop=4
 set autoindent
 set smartindent
+"set shiftround
 set backspace=indent,eol,start          "backspaces delete auto-inserted indents
 "set formatoptions-=ro
 "set preserveindent
@@ -224,6 +225,6 @@ map <silent> <F11>          :sp +Explore<CR>
 map <silent> <F12>          :Explore<CR>
 
 " Local settings
-if filereadable(expand("~/.vimrc_local"))
+if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif

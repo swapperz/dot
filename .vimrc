@@ -174,7 +174,7 @@ highlight LineNr ctermfg=grey
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c\ [%{LinePercent()}%h]
 
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -182,6 +182,10 @@ function! HasPaste()
         return 'PASTE MODE  '
     endif
     return ''
+endfunction
+
+function! LinePercent()
+    return line('.') * 100 / line('$') . '%'
 endfunction
 
 hi StatusLine ctermbg=black ctermfg=darkgrey

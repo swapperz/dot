@@ -57,7 +57,7 @@ plugins=(history-substring-search colored-man git svn httpie command-not-found d
 
 # dircycle - Ctrl+Shift+Left/Right
 
-#HIST_FIND_NO_DUPS
+HIST_FIND_NO_DUPS="true"
 HIST_IGNORE_ALL_DUPS="true"
 
 ZSH_COMPDUMP="${HOME}/.zcompdump"

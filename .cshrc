@@ -29,7 +29,7 @@ if ($OSTYPE == 'FreeBSD') then
 
     setenv LSCOLORS 'fxfxcxdxbxegedabagacad'
 else
-    alias ls    ls -A --color=auto
+    alias ls    ls --color=auto -A
     alias la    ls --color=auto -a
     alias lf    ls --color=auto -FA
     alias ll    ls --color=auto -lA
